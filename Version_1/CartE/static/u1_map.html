@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script type="text/javascript">
+var ctx = null;
+var UpsonMap = [
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+	0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+	0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+	0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+	0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+	0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0,
+	0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
+	0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
+	0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0,
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+];
+var tileW = 30, tileH = 30;
+var mapW = 20, mapH = 20;
+
+window.onload = function()
+{
+	ctx = document.getElementById('upson_1st_floor').getContext("2d");
+	requestAnimationFrame(drawGame);
+	ctx.font = "bold 10pt sans-serif";
+};
+
+function drawGame()
+{
+	if(ctx==null) { return; }
+
+	for(var y = 0; y < mapH; y++)
+	{
+		for(var x = 0; x < mapW; x++)
+		{
+			switch(UpsonMap[((y*mapW)+x)])
+			{
+				case 1:
+					ctx.fillStyle = "#F7F9F9";
+					break;
+				case 2:
+					ctx.fillStyle = "#B2BABB";
+					break;
+				default:
+					ctx.fillStyle = "#B2BABB";
+			}
+
+			ctx.fillRect( x*tileW, y*tileH, tileW, tileH);
+		}
+	}
+
+	ctx.fillStyle = "#ff0000";
+    ctx.fillText("Upson First Floor", 10, 20);
+	
+	ctx.fillText("West", 70, 110);
+	ctx.fillText("Study", 70, 125);
+	ctx.fillText("Corner", 70, 140);
+
+	ctx.fillText("Phillips Hall", 310, 20);
+	ctx.fillText("^", 340, 40);
+	ctx.fillText("|", 342, 45);
+
+	ctx.fillText("Rhodes Hall", 455, 560);
+
+	ctx.fillText("10040-1", 150, 265);
+	ctx.fillText("10040-2", 250, 265);
+	ctx.fillText("10041-1", 370, 265);
+	ctx.fillText("10041-2", 460, 265);
+
+	ctx.fillStyle = "#008080";
+	
+    ctx.fillText(C0, LOCW0, LOCH0);
+	ctx.fillText(C1, LOCW1, LOCH1);
+	ctx.fillText(C2, LOCW2, LOCH2);
+	ctx.fillText(C3, LOCW3, LOCH3);
+	ctx.fillText(C4, LOCW4, LOCH4);
+	requestAnimationFrame(drawGame);
+}
+</script>
+
+</head>
+<body>
+    <div style = "text-align:center;">
+        <p><canvas id="upson_1st_floor" width="600" height="800"></canvas><p>
+    </div>
+
+</body>
+</html>

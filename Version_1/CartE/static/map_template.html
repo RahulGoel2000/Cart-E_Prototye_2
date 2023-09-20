@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script type="text/javascript">
+var ctx = null;
+var phillipsMap = [
+	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+	0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
+	0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+	0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+];
+var tileW = 30, tileH = 30;
+var mapW = 20, mapH = 20;
+
+window.onload = function()
+{
+	ctx = document.getElementById('phillips_2nd_floor').getContext("2d");
+	requestAnimationFrame(drawGame);
+	ctx.font = "bold 10pt sans-serif";
+};
+
+function drawGame()
+{
+	if(ctx==null) { return; }
+
+	for(var y = 0; y < mapH; y++)
+	{
+		for(var x = 0; x < mapW; x++)
+		{
+			switch(phillipsMap[((y*mapW)+x)])
+			{
+				case 1:
+					ctx.fillStyle = "#F7F9F9";
+					break;
+				case 2:
+					ctx.fillStyle = "#B2BABB";
+					break;
+				default:
+					ctx.fillStyle = "#B2BABB";
+			}
+
+			ctx.fillRect( x*tileW, y*tileH, tileW, tileH);
+		}
+	}
+
+	ctx.fillStyle = "#ff0000";
+    ctx.fillText("Phillips' Second Floor", 10, 20);
+	ctx.fillText("Room 236", 10, 400);
+	ctx.fillText("Room 238", 10, 480);
+	ctx.fillText("Room 235", 200, 340);
+	ctx.fillText("Room 237", 200, 400);
+	ctx.fillText("Room 239", 200, 500);
+	ctx.fillStyle = "#008080";
+    ctx.fillText("CART-HERE", LOCW, LOCH);
+	requestAnimationFrame(drawGame);
+}
+</script>
+
+</head>
+<body>
+    <div style = "text-align:center;">
+        <p><canvas id="phillips_2nd_floor" width="600" height="800"></canvas><p>
+    </div>
+
+</body>
+</html>
