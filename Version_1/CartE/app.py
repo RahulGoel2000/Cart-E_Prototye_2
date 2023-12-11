@@ -17,7 +17,7 @@ class Cart:
         self.time = deque()
         self.id = id
 
-carts = ["94:E6:86:C4:2F:50","94:E6:86:C3:E0:0C", "94:E6:86:C5:67:8C", "94:E6:86:C4:21:CC"]
+carts = ["94:E6:86:C4:2F:50","94:E6:86:C3:E0:0C", "94:E6:86:C5:67:8C", "94:E6:86:C4:21:CC", "CC:DB:A7:10:81:24"]
 cart_list = [] 
 for i in carts:
     cart_list.append(Cart(i))
@@ -38,6 +38,7 @@ def hello_world():
 @app.route("/data", methods=['GET', 'POST'])
 def data_receive():
     if(request.method == 'POST'):
+        print("rahul:", request.data)
         store_signals(request.data)
         return "DATA Received"
     else:
@@ -86,7 +87,9 @@ def store_signals(data):
         # find the mac address of the current Cart-E
         cart_idx = data_string.find("ESP:")
         cart_mac = data_string[cart_idx+len("ESP:"):cart_idx+len("ESP:")+17]
-
+        print("data_string:",data_string)
+        print("cart_idx:",cart_idx)
+        print("cart_mac:",cart_mac)
         # find which cart this signal is from
         for i in range(len(carts)):
             if(cart_mac == carts[i]):
@@ -108,14 +111,14 @@ def store_signals(data):
             curr_cart.time.pop()
         dt_Ny = datetime.now(timeZ_Ny)
 
-        curr_cart.time.appendleft(dt_Ny.strftime('%l:%M%p %Z on %b %d, %Y'))
+        curr_cart.time.appendleft(dt_Ny.strftime('%I:%M%p %Z on %b %d, %Y'))
 
         # check if there are any more address
         mac_idx = data_string.find('MAC:')
 
     # record the wifi signal information in corresponding file
     # each file has the prefix of the cart's mac address as its id number
-    f = open("./signals/"+cart_mac+"_wifi_signals.txt", "w")
+    f = open("./signals/wifi_signals.txt", "w")
     for i in range(len(curr_cart.mac)):
         f.write("mac = " + curr_cart.mac[i] + ', dB = ' + curr_cart.dB[i] + ", time = " + curr_cart.time[i] + '\n')
             
