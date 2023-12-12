@@ -1,0 +1,8 @@
+mac = 4C:19:5D:04:FA:9, dB = 100, time = 10:03PM EST on Nov 30, 2023
+mac = 4C:19:5D:04:FA:9, dB = 92, time = 10:03PM EST on Nov 30, 2023
+mac = 4C:19:5D:04:FA:9, dB = 84, time = 10:02PM EST on Nov 30, 2023
+mac = 4C:19:5D:04:FA:9, dB = 96, time = 10:01PM EST on Nov 30, 2023
+mac = 4C:19:5D:04:FA:9, dB = 94, time = 10:01PM EST on Nov 30, 2023
+mac = 4C:19:5D:04:FA:9, dB = 100, time = 10:00PM EST on Nov 30, 2023
+mac = 4C:19:5D:04:FA:9, dB = 100, time = 09:59PM EST on Nov 30, 2023
+cart = CC:DB:A7:10:81:24

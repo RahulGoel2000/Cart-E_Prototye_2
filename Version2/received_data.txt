@@ -1,0 +1,18 @@
+2023-11-23 19:48:04.021221 - {"SSID": "SpectrumSetup-97", "BSSID": "4C:19:5D:04:FA:9D", "RSSI": -67, "Channel": 1, "Encryption": 3}
+2023-11-23 19:48:04.031861 - {"SSID": ".|.", "BSSID": "74:37:5F:A0:4F:43", "RSSI": -76, "Channel": 6, "Encryption": 3}
+2023-11-23 19:48:04.033500 - {"SSID": "Chowgan_Bytes", "BSSID": "4C:AB:F8:F3:77:89", "RSSI": -77, "Channel": 1, "Encryption": 3}
+2023-11-23 19:48:04.245270 - {"SSID": "Wu Tang Lan", "BSSID": "F8:DA:0C:FC:D1:03", "RSSI": -78, "Channel": 1, "Encryption": 3}
+2023-11-23 19:48:04.246881 - {"SSID": "DIRECT-FIDESKTOP-H0KNJRQmsKF", "BSSID": "FA:34:41:53:3A:95", "RSSI": -78, "Channel": 11, "Encryption": 3}
+2023-11-23 19:48:04.449971 - {"SSID": "Internet Jamboree", "BSSID": "E4:C3:2A:79:E7:13", "RSSI": -79, "Channel": 2, "Encryption": 4}
+2023-11-23 19:48:04.451561 - {"SSID": "ClaraSchumann", "BSSID": "DC:8D:8A:D0:52:09", "RSSI": -82, "Channel": 6, "Encryption": 4}
+2023-11-23 19:48:04.655723 - {"SSID": "SpectrumSetup-11", "BSSID": "74:37:5F:CF:73:13", "RSSI": -85, "Channel": 1, "Encryption": 3}
+2023-11-23 19:48:04.657835 - {"SSID": "SpectrumSetup-F0", "BSSID": "B0:FC:88:46:58:F6", "RSSI": -85, "Channel": 6, "Encryption": 3}
+2023-11-23 19:48:04.860398 - {"SSID": "ORBI01", "BSSID": "CE:9E:43:5F:C9:DC", "RSSI": -87, "Channel": 4, "Encryption": 3}
+2023-11-23 19:48:04.861957 - {"SSID": "SpectrumSetup-6F", "BSSID": "88:DE:7C:EA:44:6D", "RSSI": -87, "Channel": 11, "Encryption": 3}
+2023-11-23 19:48:05.173447 - {"SSID": "Bird Nest", "BSSID": "34:53:D2:29:A2:C6", "RSSI": -89, "Channel": 1, "Encryption": 3}
+2023-11-23 19:48:05.175631 - {"SSID": "209 Giles 1st Floor", "BSSID": "F0:7B:65:63:E4:B3", "RSSI": -90, "Channel": 11, "Encryption": 3}
+2023-11-23 19:48:05.177589 - {"SSID": "on the gorge", "BSSID": "74:37:5F:5C:71:3F", "RSSI": -92, "Channel": 11, "Encryption": 3}
+2023-11-23 19:48:05.246491 - {"SSID": "212g", "BSSID": "D8:EC:5E:17:A0:D7", "RSSI": -92, "Channel": 11, "Encryption": 3}
+2023-11-23 19:48:05.248059 - {"SSID": "Urban-Getaway_2GEXT", "BSSID": "94:A6:7E:37:CD:41", "RSSI": -92, "Channel": 11, "Encryption": 3}
+2023-11-23 19:48:05.398899 - {"SSID": "209 Giles 1st Floor_EXT", "BSSID": "48:22:54:DC:67:3C", "RSSI": -93, "Channel": 11, "Encryption": 3}
+2023-11-23 19:48:05.679262 - {"SSID": "NoFunZone", "BSSID": "20:9A:7D:F7:C8:F6", "RSSI": -94, "Channel": 11, "Encryption": 3}

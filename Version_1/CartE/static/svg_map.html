@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Building Floor-plans</title>
+	<style>
+		/* .box:hover {
+			fill: #ffd580;
+			stroke: #ffc107;
+		} */
+		body {
+			background-image: url("Upson_web.jpg");
+			/* background-image: url("https://images.squarespace-cdn.com/content/v1/518a9d87e4b0288d5ff8b768/1510545427083-8MBAIRBN76Q8TYGCLF1P/1740_01.jpg?format=1500w"); */
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			margin: 0;
+			padding: 0;
+			font-family: "Times New Roman", Times, serif;
+		}
+
+		#phillips_1st:hover, #phillips_2nd:hover, #phillips_3rd:hover, #upson_1st:hover, #upson_2nd:hover, #upson_3rd:hover {
+			cursor: pointer;
+            fill: #ffd580;
+			stroke: #ffc107;
+		}
+		
+      	.small {
+          font: bold italic 18px sans-serif;
+        }
+        
+		/* .building {
+			display: flex;
+			max-width: 800px;
+			margin: 0 auto;
+		} */
+
+		.floor-plan {
+			padding: 20px;
+			margin: 10px;
+			max-width: calc(100vw - 60px);
+			max-height: calc(100vh - 60px);
+		}
+
+		.floor-plan svg {
+			width: 100%;
+			height: 100%;
+		}
+
+		.box {
+			fill: #808080;
+			stroke: #ff9800;
+			stroke-width: 2;
+			cursor: pointer;
+			transition: all 0.2s ease-in-out;
+		}
+	</style>
+</head>
+
+
+<body>
+	<div class="floor-plan">
+		<!-- <div class="floor-plan"> -->
+			<svg>
+				<!-- <rect x="0" y="0" width="800" height="600" fill="#f2f2f2" opacity="0.7"/> -->
+
+                <text x="50%" y="15%" font-weight="bold" font-size="30" text-anchor="middle">Choose a floor-plan to view</text>
+
+				<!-- Display Upson Hall -->
+				<rect x="25%" y="35.5%" rx="10" ry="10" width="19%" height="7%" opacity="90%" fill="#000000"/>
+				<text x="34.5%" y="40.5%" font-weight="bold" font-size="28" text-anchor="middle" fill="#ffffff">Upson Hall</text>
+				<rect class="box" id="upson_3rd" rx="20" ry="20" />
+				<rect class="box" id="upson_2nd" rx="20" ry="20" />
+				<rect class="box" id="upson_1st" rx="20" ry="20" />
+				<text class="small" x="26.5%" y="48%" text-anchor="middle">3rd</text>
+                <text class="small" x="29.5%" y="53%" text-anchor="middle">2nd</text>
+                <text class="small" x="32.5%" y="58%" text-anchor="middle">1st</text>
+
+				<!-- Display Phillips Hall -->
+				<rect x="60%" y="35.5%" rx="10" ry="10" width="19%" height="7%" opacity="90%" fill="#000000"/>
+				<text x="70%" y="40.5%" font-weight="bold" font-size="28" text-anchor="middle" fill="#ffffff">Phillips Hall</text>
+				<rect class="box" id="phillips_3rd" rx="20" ry="20" />
+				<rect class="box" id="phillips_2nd" rx="20" ry="20" />
+				<rect class="box" id="phillips_1st" rx="20" ry="20" />
+                <text class="small" x="61.5%" y="48%" text-anchor="middle">3rd</text>
+                <text class="small" x="64.5%" y="53%" text-anchor="middle">2nd</text>
+                <text class="small" x="67.5%" y="58%" text-anchor="middle">1st</text>
+			</svg>
+	</div>
+	
+	<script>
+		const boxes = document.querySelectorAll('.box');
+		boxes.forEach(box => {
+			box.addEventListener('mouseenter', () => {
+            			box.style.opacity = 0.9;
+            });
+            box.addEventListener('mouseleave', () => {
+                box.style.opacity = 1;
+            });
+	    });
+    </script>
+
+	<script>
+		var svg = document.querySelector('svg');
+		var boxAttributes = {
+			'upson_3rd': {x: 0.25, y: 0.45, width: 0.13, height: 0.22},
+			'upson_2nd': {x: 0.28, y: 0.50, width: 0.13, height: 0.22},
+			'upson_1st': {x: 0.31, y: 0.55, width: 0.13, height: 0.22},
+
+			'phillips_3rd': {x: 0.60, y: 0.45, width: 0.13, height: 0.22},
+			'phillips_2nd': {x: 0.63, y: 0.50, width: 0.13, height: 0.22},
+			'phillips_1st': {x: 0.66, y: 0.55, width: 0.13, height: 0.22},
+		};
+		
+		for (var id in boxAttributes) {
+			var box = boxAttributes[id];
+			var rect = document.getElementById(id);
+			
+			// Set x and y based on window size
+			rect.setAttribute('x', window.innerWidth * box.x );
+			rect.setAttribute('y', window.innerHeight * box.y );
+			
+			// Set width and height based on window size
+			rect.setAttribute('width', window.innerWidth * box.width );
+			rect.setAttribute('height', window.innerHeight * box.height );
+		}
+		// Set viewBox based on window size
+		var viewBox = '0 0 ' + window.innerWidth + ' ' + window.innerHeight;
+		svg.setAttribute('viewBox', viewBox);
+		
+	</script>
+  
+    <script>
+        document.getElementById("phillips_1st").addEventListener("click", function() {
+            window.location.href = "p1_map.html";
+        });
+
+        document.getElementById("phillips_2nd").addEventListener("click", function() {
+            window.location.href = "p2_map.html";
+        });
+
+        document.getElementById("phillips_3rd").addEventListener("click", function() {
+            window.location.href = "p3_map.html";
+        });
+
+        document.getElementById("upson_1st").addEventListener("click", function() {
+            window.location.href = "u1_map.html";
+        });
+
+        document.getElementById("upson_2nd").addEventListener("click", function() {
+            window.location.href = "u2_map.html";
+        });
+
+        document.getElementById("upson_3rd").addEventListener("click", function() {
+            window.location.href = "u3_map.html";
+        });
+    </script>
+</body>
+</html>
