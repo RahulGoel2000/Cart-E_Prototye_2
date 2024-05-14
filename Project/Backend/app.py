@@ -10,7 +10,6 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.metrics import mean_squared_error
 from sklearn.utils import shuffle
-import json
 
 # Load the data
 data = pd.read_excel("router_data_2.xlsx")
@@ -27,7 +26,7 @@ scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
 
 # Train the KNN model on the entire dataset
-k = 3  # Number of neighbors
+k = 5  # Number of neighbors
 knn = KNeighborsRegressor(n_neighbors=k)
 knn.fit(X_scaled, y)
 
@@ -63,7 +62,7 @@ def update_positions():
     while True:
         socketio.emit('positions', positions)  # Send positions over WebSocket
         print(('positions', positions))
-        time.sleep(0.1)  # Adjust the frequency of updates as needed
+        time.sleep(0.3)  # Adjust the frequency of updates as needed
 
 # # Start the thread to update positions
 # update_thread = threading.Thread(target=update_positions)
@@ -134,25 +133,14 @@ def append_to_excel(data, file_name):
     new_X_scaled = scaler.transform(new_X)
 
     # Make predictions using the trained KNN model
-    # predicted_coordinates = knn.predict(new_X_scaled)
-    # print(data['device_id'])
-    # positions[data['device_id']]=predicted_coordinates
-    # print("Predicted coordinates (x, y):", predicted_coordinates)
     predicted_coordinates = knn.predict(new_X_scaled)
-
-    # Convert NumPy array to Python list
-    predicted_coordinates_list = predicted_coordinates.tolist()
-
-    # Assuming data['device_id'] is the key to identify the device
-    device_id = data['device_id']
-
-    # Store the predicted coordinates in positions dictionary
-    positions[device_id] = predicted_coordinates_list[0]
-
-    # Convert positions dictionary to JSON format
-    positions_json = json.dumps(positions)
-    update_positions()
-
+    print(data['device_id'])
+    positions[data['device_id']]=predicted_coordinates
+    print("Predicted coordinates (x, y):", predicted_coordinates)
+    # new_df = pd.DataFrame([new_row], columns=df.columns)
+    # df = pd.concat([df, new_df], ignore_index=True)
+    
+    # df.to_excel(file_name, index=False)
 
 
 
@@ -178,5 +166,5 @@ def receive_data():
 
 
 if __name__ == '__main__':
-    socketio.run(app, host='0.0.0.0', port=80, debug=False)
+    socketio.run(app, host='0.0.0.0', port=5000, debug=False)
     

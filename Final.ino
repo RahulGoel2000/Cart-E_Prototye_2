@@ -4,36 +4,42 @@
 const char *ssid = "RedRover";
 const char *password = "";
 const char* serverName = "http://10.49.20.67/data";
-const char* ESP32_ID = "0001";
+const char* ESP32_ID = "0003";
 
 WiFiClient client;
 
 void setup() {
   Serial.begin(115200);
   delay(1000);
-  
+  pinMode(13, OUTPUT);
   // Connect to WiFi
   Serial.println("Connecting to WiFi...");
-  WiFi.begin(ssid);
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(1000);
-    Serial.println("Connecting...");
-  }
-  Serial.println("Connected to WiFi");
-}
-
-void loop() {
-  // WiFi.begin(ssid, password);
+  // WiFi.begin(ssid);
   // while (WiFi.status() != WL_CONNECTED) {
   //   delay(1000);
   //   Serial.println("Connecting...");
   // }
+  // Serial.println("Connected to WiFi");
+}
+
+void loop() {
+  // WiFi.begin(ssid, password);
+  if (WiFi.status() != WL_CONNECTED)
+    WiFi.begin(ssid);
+  while (WiFi.status() != WL_CONNECTED) {
+    digitalWrite(13, HIGH);  // turn the LED on (HIGH is the voltage level)
+    delay(100);                      // wait for a second
+    digitalWrite(13, LOW);   // turn the LED off by making the voltage LOW
+    delay(100); 
+    // delay(100);
+    Serial.println("Connecting...");
+  }
   // Send POST request with sample data
   String data = WIFI_Scan();
   Serial.println(data);
   if (sendChunkedData(data)) {
     Serial.println("Data sent successfully");
-    delay(50);
+    delay(500);
   } else {
     Serial.println("Failed to send data");
   }

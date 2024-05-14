@@ -120,6 +120,13 @@ socket.on('positions', function(data) {
           origin_y;
           drawCirc(xxxx, yyyy);
           drawstrokeCirc(xxxx, yyyy);
+          drawText(
+            id,
+            xxxx - 13,
+            yyyy + 25,
+            12,
+            "courier"
+          );
       });
   });
 

@@ -22,14 +22,15 @@ def update_positions():
         socketio.emit('positions', positions)  # Send positions over WebSocket
         time.sleep(0.1)  # Adjust the frequency of updates as needed
 
-# Start the thread to update positions
-update_thread = threading.Thread(target=update_positions)
-update_thread.daemon = True
-update_thread.start()
+# # Start the thread to update positions
+# update_thread = threading.Thread(target=update_positions)
+# update_thread.daemon = True
+# update_thread.start()
 
 @app.route('/')
 def index():
     return render_template('visualise.html')
 
 if __name__ == '__main__':
-    socketio.run(app, debug=True)
+    # socketio.run(app,host='0.0.0.0',port=80, debug=True)
+    app.run(host='0.0.0.0', port=80)
