@@ -6,7 +6,7 @@ def click_event(event, x, y, flags, param):
         print(f'Coordinates: ({x}, {y})')
 
 # Read an image
-image = cv2.imread('Floor2.png')
+image = cv2.imread('Floor3.png')
 
 # Display the image
 cv2.imshow('Image', image)

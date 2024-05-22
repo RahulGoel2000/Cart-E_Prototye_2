@@ -3,7 +3,7 @@
 
 const char *ssid = "RedRover";
 const char *password = "";
-const char* serverName = "http://10.49.20.67/data";
+const char* serverName = "http://10.49.98.106/data";
 const char* ESP32_ID = "0003";
 
 WiFiClient client;
@@ -39,7 +39,7 @@ void loop() {
   Serial.println(data);
   if (sendChunkedData(data)) {
     Serial.println("Data sent successfully");
-    delay(500);
+    delay(10);
   } else {
     Serial.println("Failed to send data");
   }

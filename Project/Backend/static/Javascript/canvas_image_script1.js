@@ -66,9 +66,9 @@ var yflipped=-1;
 // var xflipped = sessionStorage.getItem("xflipped");
 // var yflipped = sessionStorage.getItem("yflipped");
 // var scale_factor = sessionStorage.getItem("scale_factor"),
-  var scale_factor=0.281
-  origin_x = 69.505,
-  origin_y = 505;
+  var scale_factor=0.2796
+  origin_x = 53,
+  origin_y = 397;
 
   var real_distance_waypoints=50; //in cm
   record_distance_factor= real_distance_waypoints/(scale_factor*10);
@@ -87,7 +87,7 @@ socket.on('positions', function(data) {
       -windowinnerHeight / 2 + cameraOffset.y
     );
     ctx.clearRect(0, 0, windowinnerWidth, windowinnerHeight);
-    img.src="static/FloorPlans/Floor2.png"
+    img.src="static/FloorPlans/Floor3.png"
     ctx.globalAlpha = image_opacity;
     ctx.drawImage(
       img,
@@ -118,7 +118,7 @@ socket.on('positions', function(data) {
           (yflipped * position[1]) / scale_factor -
           img.naturalHeight / 2 +
           origin_y;
-          if(position[2]<3)
+          if(position[2]>2)
           {
             drawCirc(xxxx, yyyy);
             drawstrokeCirc(xxxx, yyyy);

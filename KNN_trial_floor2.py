@@ -73,7 +73,7 @@ def receive_data():
     print(count)
     count=count+1
     parsed_data = parse_data(data)
-    append_to_excel(parsed_data, "router_data_2.xlsx")
+    append_to_excel(parsed_data, "router_data_3.xlsx")
     # Process the received data as needed
     # For example, you can save it to a file, store it in a database, or perform any other operation.
     return 'Data received successfully'

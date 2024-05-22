@@ -13,14 +13,15 @@ from sklearn.utils import shuffle
 import json
 
 # Load the data
-data = pd.read_excel("router_data_2.xlsx")
+data = pd.read_excel("router_data_3.xlsx")
 
 # Shuffle the data
 data_shuffled = shuffle(data, random_state=42)
 
 # Split data into features (signal strengths) and labels (x and y coordinates)
-X = data_shuffled.drop(columns=["x", "y"])
-y = data_shuffled[["x", "y"]]
+X = data_shuffled.drop(columns=["x", "y","z"])
+# y = data_shuffled[["x", "y"]]
+y = data_shuffled[["x", "y", "z"]]
 
 # Normalize the features
 scaler = StandardScaler()
@@ -100,16 +101,20 @@ def update_positions():
     while True:
         socketio.emit('positions', positions)  # Send positions over WebSocket
         print(('positions', positions))
-        time.sleep(0.1)  # Adjust the frequency of updates as needed
+        time.sleep(0.03)  # Adjust the frequency of updates as needed
 
 # # Start the thread to update positions
 # update_thread = threading.Thread(target=update_positions)
 # update_thread.daemon = True
 # update_thread.start()
 
-@app.route('/')
-def index():
-    return render_template('Visualise.html')
+@app.route('/floor2')
+def floor2():
+    return render_template('Visualise1.html')
+
+@app.route('/floor3')
+def floor3():
+    return render_template('Visualise2.html')
 
 
 count=0
@@ -118,35 +123,6 @@ y=100
 
 # List of MAC addresses to consider
 mac_addresses = ['20:9C:B4:09:25:80', '20:9C:B4:09:25:81', '20:9C:B4:09:25:82', '44:12:44:0F:50:80', '44:12:44:0F:50:81', '44:12:44:0F:50:82', 'E8:26:89:37:BD:80', 'E8:26:89:37:BD:81', 'E8:26:89:37:BD:82', '44:12:44:10:69:60', '44:12:44:10:69:61', '44:12:44:10:69:62', '44:12:44:10:74:A0', '44:12:44:10:74:A1', '44:12:44:10:74:A2', '44:12:44:10:06:20', '44:12:44:10:06:21', '44:12:44:10:06:22', '44:12:44:0F:8B:C0', '44:12:44:0F:8B:C1', '44:12:44:0F:8B:C2', 'CC:88:C7:10:A4:40', 'CC:88:C7:10:A4:41', 'CC:88:C7:10:A4:42', '44:12:44:0F:A4:40', '44:12:44:0F:A4:41', '44:12:44:0F:A4:42', '44:12:44:10:60:E0', '44:12:44:10:60:E1', '44:12:44:10:60:E2', 'E8:26:89:37:EB:C0', 'E8:26:89:37:EB:C1', 'E8:26:89:37:EB:C2', 'CC:88:C7:10:6A:20', 'CC:88:C7:10:6A:21', 'CC:88:C7:10:6A:22', '44:12:44:10:72:00', '44:12:44:10:72:01', '44:12:44:10:72:02', '44:12:44:0F:92:C0', '44:12:44:0F:92:C1', '44:12:44:0F:92:C2', '44:12:44:10:80:80', '44:12:44:10:80:81', '44:12:44:10:80:82']
-mac_addresses_max_signl=[
-'20:9C:B4:09:25:80',
-'20:9C:B4:09:25:81',
-'20:9C:B4:09:25:82',
-'44:12:44:0F:50:80',
-'44:12:44:0F:50:81',
-'44:12:44:0F:50:82',
-'E8:26:89:37:BD:80',
-'E8:26:89:37:BD:81',
-'E8:26:89:37:BD:82',
-'44:12:44:10:69:60',
-'44:12:44:10:69:61',
-'44:12:44:10:69:62',
-'44:12:44:10:74:A0',
-'44:12:44:10:74:A1',
-'44:12:44:10:74:A2',
-'44:12:44:10:06:20',
-'44:12:44:10:06:21',
-'44:12:44:10:06:22',
-'44:12:44:0F:8B:C0',
-'44:12:44:0F:8B:C1',
-'44:12:44:0F:8B:C2',
-'E8:26:89:37:BD:80',
-'E8:26:89:37:BD:81',
-'E8:26:89:37:BD:82',
-'44:12:44:0F:50:80',
-'44:12:44:0F:50:81',
-'44:12:44:0F:50:82']
-
 # mac_addresses_max_signl=[
 # '20:9C:B4:09:25:80',
 # '20:9C:B4:09:25:81',
@@ -174,28 +150,57 @@ mac_addresses_max_signl=[
 # 'E8:26:89:37:BD:82',
 # '44:12:44:0F:50:80',
 # '44:12:44:0F:50:81',
-# '44:12:44:0F:50:82',
-# '44:12:44:0F:A4:40',
-# '44:12:44:0F:A4:41',
-# '44:12:44:0F:A4:42',
-# '44:12:44:10:60:E0',
-# '44:12:44:10:60:E1',
-# '44:12:44:10:60:E2',
-# 'E8:26:89:37:EB:C0',
-# 'E8:26:89:37:EB:C1',
-# 'E8:26:89:37:EB:C2',
-# 'CC:88:C7:10:6A:20',
-# 'CC:88:C7:10:6A:21',
-# 'CC:88:C7:10:6A:22',
-# '44:12:44:10:72:00',
-# '44:12:44:10:72:01',
-# '44:12:44:10:72:02',
-# '44:12:44:0F:92:C0',
-# '44:12:44:0F:92:C1',
-# '44:12:44:0F:92:C2',
-# '44:12:44:10:80:80',
-# '44:12:44:10:80:81',
-# '44:12:44:10:80:82']
+# '44:12:44:0F:50:82']
+
+mac_addresses_max_signl=[
+'20:9C:B4:09:25:80',
+'20:9C:B4:09:25:81',
+'20:9C:B4:09:25:82',
+'44:12:44:0F:50:80',
+'44:12:44:0F:50:81',
+'44:12:44:0F:50:82',
+'E8:26:89:37:BD:80',
+'E8:26:89:37:BD:81',
+'E8:26:89:37:BD:82',
+'44:12:44:10:69:60',
+'44:12:44:10:69:61',
+'44:12:44:10:69:62',
+'44:12:44:10:74:A0',
+'44:12:44:10:74:A1',
+'44:12:44:10:74:A2',
+'44:12:44:10:06:20',
+'44:12:44:10:06:21',
+'44:12:44:10:06:22',
+'44:12:44:0F:8B:C0',
+'44:12:44:0F:8B:C1',
+'44:12:44:0F:8B:C2',
+'E8:26:89:37:BD:80',
+'E8:26:89:37:BD:81',
+'E8:26:89:37:BD:82',
+'44:12:44:0F:50:80',
+'44:12:44:0F:50:81',
+'44:12:44:0F:50:82',
+'44:12:44:0F:A4:40',
+'44:12:44:0F:A4:41',
+'44:12:44:0F:A4:42',
+'44:12:44:10:60:E0',
+'44:12:44:10:60:E1',
+'44:12:44:10:60:E2',
+'E8:26:89:37:EB:C0',
+'E8:26:89:37:EB:C1',
+'E8:26:89:37:EB:C2',
+'CC:88:C7:10:6A:20',
+'CC:88:C7:10:6A:21',
+'CC:88:C7:10:6A:22',
+'44:12:44:10:72:00',
+'44:12:44:10:72:01',
+'44:12:44:10:72:02',
+'44:12:44:0F:92:C0',
+'44:12:44:0F:92:C1',
+'44:12:44:0F:92:C2',
+'44:12:44:10:80:80',
+'44:12:44:10:80:81',
+'44:12:44:10:80:82']
 
 
 
@@ -231,7 +236,7 @@ def get_coordinates(mac_address, excel_file='router_Locations.xlsx'):
     y = int(filtered_df['y'].iloc[0])  # Convert to int
     z = int(filtered_df['z'].iloc[0])  # Convert to int
     
-    return x, y
+    return x, y, z
 
 def append_to_excel(data, file_name):
     global positions
@@ -286,7 +291,7 @@ def append_to_excel(data, file_name):
     # positions[data['device_id']]=predicted_coordinates
     # print("Predicted coordinates (x, y):", predicted_coordinates)
     predicted_coordinates = knn.predict(new_X_scaled)
-
+    # print("Predicted coordinates (x, y):", predicted_coordinates)
     # Convert NumPy array to Python list
     predicted_coordinates_list = predicted_coordinates.tolist()
 
