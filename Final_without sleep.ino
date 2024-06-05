@@ -4,9 +4,7 @@
 const char *ssid = "RedRover";
 const char *password = "";
 const char* serverName = "http://10.49.98.106/data";
-const char* ESP32_ID = "0001";
-
-int count_sent=0;
+const char* ESP32_ID = "0005";
 
 WiFiClient client;
 
@@ -22,44 +20,37 @@ void setup() {
   //   Serial.println("Connecting...");
   // }
   // Serial.println("Connected to WiFi");
-  esp_sleep_enable_ext0_wakeup(GPIO_NUM_33,1); //1 = High, 0 = Low
 }
 
 void loop() {
-
-  // digitalWrite(13, HIGH);  // turn the LED on (HIGH is the voltage level)
-  // delay(1000);                      // wait for a second
   // WiFi.begin(ssid, password);
   if (WiFi.status() != WL_CONNECTED)
+  {
+    digitalWrite(13, HIGH);  // turn the LED on (HIGH is the voltage level)
+    delay(10);                      // wait for a second
+    digitalWrite(13, LOW);   // turn the LED off by making the voltage LOW
+    delay(10); 
     WiFi.begin(ssid);
+  }
   while (WiFi.status() != WL_CONNECTED) {
     digitalWrite(13, HIGH);  // turn the LED on (HIGH is the voltage level)
-    delay(100);                      // wait for a second
+    delay(10);                      // wait for a second
     digitalWrite(13, LOW);   // turn the LED off by making the voltage LOW
-    delay(100); 
+    delay(10); 
     // delay(100);
     Serial.println("Connecting...");
   }
   // Send POST request with sample data
   String data = WIFI_Scan();
-  // Serial.println(data);
+  Serial.println(data);
   if (sendChunkedData(data)) {
     Serial.println("Data sent successfully");
-    delay(500);
-    digitalWrite(13, LOW);   // turn the LED off by making the voltage LOW
-    // delay(1000);
-    esp_deep_sleep_start(); 
+    delay(10);
   } else {
     Serial.println("Failed to send data");
   }
-  count_sent++;
-  if(count_sent>=150)
-  {
-    esp_deep_sleep_start();
-    count_sent=0;
-  }
-  delay(100);
-  // WiFi.disconnect();
+  delay(10);
+  WiFi.disconnect();
   // http.end();
    // Send data every 5 seconds
 }
@@ -147,7 +138,6 @@ bool sendChunkedData(String data) {
     int chunkEnd = min(i + chunkSize, dataLength);
     String chunk = data.substring(i, chunkEnd);
     int httpResponseCode = http.POST(chunk);
-    // Serial.println(httpResponseCode)
     if (httpResponseCode != HTTP_CODE_OK) {
       http.end();
       return false;
